@@ -1,3 +1,15 @@
+### Prepare 
+
+Add Jetty Library
+```groovy
+
+
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723'
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723'
+
+```
+
+
 ### Create First Servlet
 
 Create Simple Web Service Class
