@@ -1,11 +1,29 @@
 ### Prepare 
 
-Add Jetty Library
+Add Jetty Library Gradle
 ```groovy
 
 
     compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723'
     compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723'
+
+```
+Add Jetty Library Maven
+```xml
+
+<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-server</artifactId>
+    <version>9.4.31.v20200723</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-servlet -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-servlet</artifactId>
+    <version>9.4.31.v20200723</version>
+</dependency>
+
 
 ```
 
