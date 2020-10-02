@@ -1,4 +1,9 @@
+### Install GSON
 
+```groovy
+ // Install GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+```
 
 ### Create Message Bean
 
