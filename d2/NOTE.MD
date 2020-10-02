@@ -51,3 +51,31 @@ public class Message {
 }
 
 ```
+
+### Convert message object into a message json
+
+```java
+
+public class ResourceAccessRest extends HttpServlet {
+
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        Message message = new Message("Test", "Message", new Date());
+        Gson gson = new Gson();
+        String json = gson.toJson(message);
+
+
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.getWriter().println(json);
+    }
+
+}
+
+```
+
+### Read request data
+
