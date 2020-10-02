@@ -40,4 +40,13 @@ public class Message {
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "title='" + title + '\'' +
+                ", message='" + message + '\'' +
+                ", dateTime=" + dateTime +
+                '}';
+    }
 }

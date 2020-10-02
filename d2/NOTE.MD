@@ -79,3 +79,30 @@ public class ResourceAccessRest extends HttpServlet {
 
 ### Read request data
 
+```java
+
+  StringBuffer jb = new StringBuffer();
+  String line = null;
+  try {
+      BufferedReader reader = req.getReader();
+      while ((line = reader.readLine()) != null)
+          jb.append(line);
+  } catch (Exception e) {
+      System.out.println(e);
+  }
+    
+  String payloadString = jb.toString();   
+
+```
+### Convert json string to object
+
+```java
+
+   String payloadString = jb.toString();
+
+   Gson gson = new Gson();
+   Message msg = gson.fromJson(payloadString,Message.class);
+   System.out.println(msg);
+
+
+```
