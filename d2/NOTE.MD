@@ -5,6 +5,16 @@
     implementation 'com.google.code.gson:gson:2.8.6'
 ```
 
+```xml
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.6</version>
+</dependency>
+
+```
+
 ### Create Message Bean
 
 ```java
