@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'lk.ijse.webservice.helloworld'
+group 'lk.ijse.webservice.resource_access'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -25,6 +25,7 @@ dependencies {
     compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723'
     compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723'
 
+    // Install GSON
     implementation 'com.google.code.gson:gson:2.8.6'
 
 }

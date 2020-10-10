@@ -1,6 +1,6 @@
-package lk.ijse.webservices.helloworld;
+package lk.ijse.webservice.resource_access;
 
-import lk.ijse.webservices.helloworld.rest.ResourceAccessRest;
+import lk.ijse.webservice.resource_access.api.ResourceAccessRest;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -18,8 +18,7 @@ public class RestServer {
         ServletHandler servletHandler = new ServletHandler();
         server.setHandler(servletHandler);
 
-        servletHandler.addServletWithMapping(ResourceAccessRest.class,"/message");
-
+        servletHandler.addServletWithMapping(ResourceAccessRest.class, "/hello");
         server.start();
     }
 }
