@@ -1,108 +1,35 @@
-### Install GSON
+### Create jar file with all dependencies
 
 ```groovy
- // Install GSON
-    implementation 'com.google.code.gson:gson:2.8.6'
-```
-
-### Create Message Bean
-
-```java
-
-
-public class Message {
-
-    private String title;
-    private String message;
-    private Date dateTime;
-
-    public Message() {
+jar {
+    manifest {
+        attributes "Main-Class": "lk.ijse.webservice.resource_access.Main"
     }
 
-    public Message(String title, String message, Date dateTime) {
-        this.title = title;
-        this.message = message;
-        this.dateTime = dateTime;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Date getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
-
 ```
 
-### Convert message object into a message json
+### Add Procfile
 
+```shell script
+ web:java -jar build/libs/resource_accesss-1.0-SNAPSHOT.jar
+```
+
+### Add Build File
+
+```shell script
+
+```
+### Change port
 ```java
 
-public class ResourceAccessRest extends HttpServlet {
-
-    protected void doGet(
-            HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-
-        Message message = new Message("Test", "Message", new Date());
-        Gson gson = new Gson();
-        String json = gson.toJson(message);
-
-
-        response.setContentType("application/json");
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(json);
+  private static int getPort() {
+        return Integer.parseInt(System.getenv().getOrDefault("PORT", "5000"));
     }
 
-}
-
-```
-
-### Read request data
-
-```java
-
-  StringBuffer jb = new StringBuffer();
-  String line = null;
-  try {
-      BufferedReader reader = req.getReader();
-      while ((line = reader.readLine()) != null)
-          jb.append(line);
-  } catch (Exception e) {
-      System.out.println(e);
-  }
-    
-  String payloadString = jb.toString();   
-
-```
-### Convert json string to object
-
-```java
-
-   String payloadString = jb.toString();
-
-   Gson gson = new Gson();
-   Message msg = gson.fromJson(payloadString,Message.class);
-   System.out.println(msg);
-
+  connector.setPort(getPort());    
 
 ```
