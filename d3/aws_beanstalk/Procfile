@@ -1,0 +1,1 @@
+web:java -jar build/libs/resource_accesss-1.0-SNAPSHOT.jar
