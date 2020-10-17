@@ -21,7 +21,7 @@ jar {
 ### Add Build File
 
 ```shell script
-
+build: gradle :jar
 ```
 ### Change port
 ```java
