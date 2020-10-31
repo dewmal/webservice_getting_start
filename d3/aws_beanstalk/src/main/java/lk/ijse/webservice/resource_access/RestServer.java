@@ -4,6 +4,7 @@ import lk.ijse.webservice.resource_access.api.ResourceAccessRest;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.session.DefaultSessionIdManager;
 import org.eclipse.jetty.servlet.ServletHandler;
 
 public class RestServer {
@@ -18,11 +19,12 @@ public class RestServer {
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(getPort());
         server.setConnectors(new Connector[]{connector});
-
         ServletHandler servletHandler = new ServletHandler();
         server.setHandler(servletHandler);
+        servletHandler.addServletWithMapping(ResourceAccessRest.class, "/create-chat-room");
+        servletHandler.addServletWithMapping(ResourceAccessRest.class, "/chat");
 
-        servletHandler.addServletWithMapping(ResourceAccessRest.class, "/hello");
+        server.setSessionIdManager(new DefaultSessionIdManager(server));
         server.start();
     }
 }

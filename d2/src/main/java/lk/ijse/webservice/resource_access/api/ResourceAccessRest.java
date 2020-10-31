@@ -29,27 +29,29 @@ public class ResourceAccessRest extends HttpServlet {
         String payloadString = jb.toString();
 
         Gson gson = new Gson();
-        Message msg = gson.fromJson(payloadString,Message.class);
+        Message msg = gson.fromJson(payloadString, Message.class);
         System.out.println(msg);
 
+        req.getSession().setAttribute("session_key", System.nanoTime());
+        System.out.println("Session Key : "+ req.getSession().getAttribute("session_key"));
 
 
         resp.getWriter().println("OK");
     }
 
     protected void doGet(
-            HttpServletRequest request,
-            HttpServletResponse response)
+            HttpServletRequest req,
+            HttpServletResponse res)
             throws ServletException, IOException {
 
         Message message = new Message("Test", "Message", new Date());
         Gson gson = new Gson();
         String json = gson.toJson(message);
 
-
-        response.setContentType("application/json");
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(json);
+        System.out.println("Session Key : "+ req.getSession().getAttribute("session_key"));
+        res.setContentType("application/json");
+        res.setStatus(HttpServletResponse.SC_OK);
+        res.getWriter().println(json);
     }
 
 }
