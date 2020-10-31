@@ -1,4 +1,4 @@
-package ijse.ws.day4.starter;
+package ijse.ws.day4.starter.api;
 
 
 import org.springframework.http.HttpStatus;
