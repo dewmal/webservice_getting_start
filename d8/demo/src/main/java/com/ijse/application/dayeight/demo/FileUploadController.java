@@ -18,8 +18,8 @@ public class FileUploadController {
     @PostMapping("/api/upload")
     @ResponseBody
     public String uploadData(@RequestParam("file") MultipartFile file) {
-        System.out.println(file);
-        File uploadedFile = new File("text_uploaded");
+//        System.out.println(file.get);
+        File uploadedFile = new File(file.getOriginalFilename());
 
         try (OutputStream os = new FileOutputStream(uploadedFile)) {
             os.write(file.getBytes());
