@@ -11,10 +11,7 @@ import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.GetObjectRequest;
-import software.amazon.awssdk.services.s3.model.GetObjectResponse;
-import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.s3.model.PutObjectResponse;
+import software.amazon.awssdk.services.s3.model.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,8 +52,6 @@ public class FileUploadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String bucketName = "com.ijse.awsclass.day8";
-        String objectKey = "test_file";
 
 
         Region region = Region.EU_WEST_1;
@@ -64,13 +59,14 @@ public class FileUploadController {
                 .region(region)
                 .build();
 
-        PutObjectResponse response = s3.putObject(PutObjectRequest.builder()
-                        .bucket(bucketName)
-                        .key(objectKey)
-                        .build(),
-                RequestBody.fromFile(uploadedFile)
-        );
-        System.out.println(response.eTag());
+        ObjectCannedACL acl = ObjectCannedACL.PUBLIC_READ_WRITE;
+        s3.putObject(PutObjectRequest.builder()
+                .bucket("com.ijse.awsclass.day8")
+                .key(uploadedFile.getName())
+                .acl(acl)
+                .build(), RequestBody.fromFile(uploadedFile));
+
+        s3.close();
 
 
         return "DONE";
